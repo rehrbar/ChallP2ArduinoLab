@@ -29,7 +29,7 @@ Um Konflikte mit anderen Paketen und Python-Installationen vorzubeugen setzen wi
 ```
 virtualenv challp-env
 source challp-env/bin/activate
-pip install paho-mqtt
+pip install paho-mqtt pyserial
 ```
 
 Für die spätere Verwendung sollte jeweils in der virtuellen Umgebung gearbeitet werden.
