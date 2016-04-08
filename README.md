@@ -92,3 +92,5 @@ cd ~/challp-arduino/emqttd/rel/emqttd/bin/
 ```
 Danach ist das Webinterface unter `http://<IP des Raspberry PI>:18083` erreichbar.  
 Benutzername/Passwort: admin/public
+
+**TODO** Eigentliche ausführung des Projektes erwähnen.
