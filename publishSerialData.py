@@ -1,4 +1,3 @@
-#!/usr/bin/python
 import serial
 import paho.mqtt.client as mqtt
 
@@ -18,7 +17,7 @@ try:
     # publish loop
     while True:
         sensor_value = int(ser.readline())
-        print("Sensor value: " + sensor_value)
+        print("Sensor value: " + str(sensor_value))
         client.publish("arduino/poti", sensor_value)
 except KeyboardInterrupt:
     print('^C received, shutting down client')
