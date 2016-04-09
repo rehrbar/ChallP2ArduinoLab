@@ -22,7 +22,7 @@ try:
         if groups is not None:
             pot0 = groups.group(1)
             print("Sensor value: " + pot0)
-            client.publish("arduino/poti", pot0)
+            client.publish("arduino/pot0", pot0)
         else:
             print("Error reading value!")
 except KeyboardInterrupt:

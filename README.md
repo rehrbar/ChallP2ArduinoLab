@@ -29,7 +29,7 @@ Um Konflikte mit anderen Paketen und Python-Installationen vorzubeugen setzen wi
 ```
 virtualenv challp-env
 source challp-env/bin/activate
-pip install paho-mqtt pyserial
+pip install paho-mqtt pyserial RPLCD
 ```
 
 Für die spätere Verwendung sollte jeweils in der virtuellen Umgebung gearbeitet werden.
@@ -92,5 +92,11 @@ cd ~/challp-arduino/emqttd/rel/emqttd/bin/
 ```
 Danach ist das Webinterface unter `http://<IP des Raspberry PI>:18083` erreichbar.  
 Benutzername/Passwort: admin/public
+
+Starten des Clients, welcher die Daten einliest und an den Broker sendet:
+```
+cd ~/challp-arduino/ChallP2ArduinoLab
+python publishSerialData.py 1>/dev/null&
+```
 
 **TODO** Eigentliche ausführung des Projektes erwähnen.
