@@ -14,7 +14,7 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     try:
-        GPIO.output(int(msg.payload) > THRESHOLD)
+        GPIO.output(5, int(msg.payload) > THRESHOLD)
     except ValueError:
         print("Message was not an integer.")
 
@@ -31,4 +31,4 @@ try:
     client.loop_forever()
 except KeyboardInterrupt:
     print("^C received, shutting down subscriberLCD")
-    client.loop_stop()
+    GPIO.cleanup(5)
