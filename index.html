@@ -1,0 +1,42 @@
+
+
+<html>
+<head>
+<script src="paho.js"></script>
+<script>
+// Create a client instance
+client = new Paho.MQTT.Client("localhost", Number(8083), "C_socket");
+
+// set callback handlers
+client.onConnectionLost = onConnectionLost;
+client.onMessageArrived = onMessageArrived;
+
+// connect the client
+client.connect({onSuccess:onConnect});
+
+
+// called when the client connects
+function onConnect() {
+  // Once a connection has been made, make a subscription and send a message.
+  console.log("onConnect");
+  client.subscribe("/Test");
+}
+
+// called when the client loses its connection
+function onConnectionLost(responseObject) {
+  if (responseObject.errorCode !== 0) {
+    console.log("onConnectionLost:"+responseObject.errorMessage);
+  }
+}
+
+// called when a message arrives
+function onMessageArrived(message) {
+  console.log("onMessageArrived:"+message.payloadString);
+  document.getElementById('filler').innerHTML = message.payloadString;
+}
+
+</script>
+</head>
+<body>
+<h1>Temperatur<div id="filler"></div></h1>
+</body>
