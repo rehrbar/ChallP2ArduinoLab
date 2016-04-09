@@ -1,3 +1,4 @@
+import re
 import serial
 import paho.mqtt.client as mqtt
 
@@ -6,7 +7,8 @@ def on_connect(client, userdata, flags, rc):
     print("Connected to broker with result code " + str(rc))
 
 # initialize
-ser = serial.Serial('/dev/ttyACM0', 9600)
+regexPattern = re.compile("^pot0:(\d+)\r$")
+ser = serial.Serial("/dev/ttyACM0", 9600)
 client = mqtt.Client()
 client.on_connect = on_connect
 
@@ -16,9 +18,13 @@ client.loop_start()
 try:
     # publish loop
     while True:
-        sensor_value = int(ser.readline())
-        print("Sensor value: " + str(sensor_value))
-        client.publish("arduino/poti", sensor_value)
+        groups = regexPattern.search(ser.readline())
+        if groups is not None:
+            pot0 = groups.group(1)
+            print("Sensor value: " + pot0)
+            client.publish("arduino/poti", pot0)
+        else:
+            print("Error reading value!")
 except KeyboardInterrupt:
-    print('^C received, shutting down client')
+    print("^C received, shutting down client")
     client.loop_stop()
