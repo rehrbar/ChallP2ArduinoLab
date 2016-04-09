@@ -13,8 +13,8 @@ def on_message(client, userdata, msg):
     with cursor(lcd, 1, 0):
         lcd.write_string(str(msg.payload).ljust(4))
 
-lcd = CharLCD(pin_rs=15, pin_rw=18, pin_e=16, pins_data=[21, 22, 23, 24],
-              numbering_mode=GPIO.BOARD,
+lcd = CharLCD(pin_rs=4, pin_e=17, pins_data=[18, 22, 23, 24],
+              numbering_mode=GPIO.BCM,
               cols=16, rows=2)
 
 with cleared(lcd):
