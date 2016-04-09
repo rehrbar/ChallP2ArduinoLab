@@ -14,6 +14,7 @@ Für dieses Projekt setzen wir folgende Software/Hardware voraus:
 * Raspbian Jessie Lite auf SD-Karte vorinstalliert. Wir verzichten hier auf das GUI, da alle Schritte via SSH vorgenommen werden können.
 * git client (ist standardmässig nicht vorinstalliert, also kurz: `sudo apt-get install git`)
 * python 2.7
+* python-dev 2.7 (`sudo apt-get install python-dev`)
 * pip (PyPA, Package Manager für Python)
 * Virtualenv (`pip install virtualenv`)
 
@@ -29,7 +30,7 @@ Um Konflikte mit anderen Paketen und Python-Installationen vorzubeugen setzen wi
 ```
 virtualenv challp-env
 source challp-env/bin/activate
-pip install paho-mqtt pyserial RPLCD
+pip install paho-mqtt pyserial RPLCD rpi.gpio
 ```
 
 Für die spätere Verwendung sollte jeweils in der virtuellen Umgebung gearbeitet werden.
