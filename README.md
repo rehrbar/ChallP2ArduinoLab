@@ -98,6 +98,8 @@ Starten des Clients, welcher die Daten einliest und an den Broker sendet:
 ```
 cd ~/challp-arduino/ChallP2ArduinoLab
 python publishSerialData.py 1>/dev/null&
+python subscriberLCD.py 1>/dev/null&
+python subscriberLED.py 1>/dev/null&
 ```
 
 **TODO** Eigentliche ausführung des Projektes erwähnen.

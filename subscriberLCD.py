@@ -2,6 +2,9 @@ import RPi.GPIO as GPIO
 from RPLCD import CharLCD, cleared, cursor
 import paho.mqtt.client as mqtt
 
+HOSTNAME = "localhost"
+PORT = 1883
+
 # callbacks
 def on_connect(client, userdata, flags, rc):
     print("Connected to broker with result code " + str(rc))
@@ -25,11 +28,10 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect("localhost", 1883)
+client.connect(HOSTNAME, PORT)
 
 try:
     client.loop_forever()
 except KeyboardInterrupt:
     print("^C received, shutting down subscriberLCD")
     lcd.close(clear=True)
-    client.loop_stop()
