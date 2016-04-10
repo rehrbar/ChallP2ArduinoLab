@@ -20,6 +20,33 @@ Für dieses Projekt setzen wir folgende Software/Hardware voraus:
 
 \* Inhalt des Arduino Starter Kit
 
+## LC-Display an Raspberry Pi
+
+| LCD Pin | an RPi GPIO          | Beschreibung                                           |
+|---------|----------------------|--------------------------------------------------------|
+| 1. VSS  | Pin 6 (GND)          | Versorgunsspannung (Masse)                             |
+| 2. VDD  | Pin 2 (5V)           | Versorgunsspannung 5V                                  |
+| 3. V0   | Pin 6 (GND)          | Kontrastspannung                                       |
+| 4. RS   | Pin 22 (GPIO25)      | Registerauswahl (0: Befehlsregister, 1: Datenregister) |
+| 5. RW   | Pin 6 (GND)          | Read/Write (0: Write Modus, 1: Read Modus)             |
+| 6. E    | Pin 11 (GPIO17)      | Taktflanke                                             |
+| 7. D0   | –                    | Datenleitung 0                                         |
+| 8. D1   | –                    | Datenleitung 1                                         |
+| 9. D2   | –                    | Datenleitung 2                                         |
+| 10. D3  | –                    | Datenleitung 3                                         |
+| 11. D4  | Pin 12 (GPIO18)      | Datenleitung 4                                         |
+| 12. D5  | Pin 15 (GPIO22)      | Datenleitung 5                                         |
+| 13. D6  | Pin 16 (GPIO23)      | Datenleitung 6                                         |
+| 14. D7  | Pin 18 (GPIO24)      | Datenleitung 7                                         |
+| 15. A   | Pin 2 (5V) (220 Ohm) | Hintergrundbeleuchtung Anode                           |
+| 16. K   | Pin 6 (GND)          | Hintergrundbeleuchtung Kathode                         |
+
+## Arduino
+Der Potentiometer ist mit A0 verbunden. Der Sketch muss im Voraus auf den Arduino geladen werden.
+
+## LED
+Das zusätzliche LED befindet sich auf Pin 29 (GPIO5) und wird mit einem 220 Ohm Widerstand geschützt.
+
 # Installation
 
 Für das Projekt arbeiten wir in einem neuen Verzeichnis. Wenn nichts anderes vermerkt ist, so befinden wir uns in diesem. (`~/challp-arduino`)
