@@ -86,6 +86,7 @@ git clone https://github.com/rehrbar/ChallP2ArduinoLab.git
 
 # Ausführen
 
+## Broker
 Start des Broker in daemon-mode:
 ```
 cd ~/challp-arduino/emqttd/rel/emqttd/bin/
@@ -94,12 +95,21 @@ cd ~/challp-arduino/emqttd/rel/emqttd/bin/
 Danach ist das Webinterface unter `http://<IP des Raspberry PI>:18083` erreichbar.  
 Benutzername/Passwort: admin/public
 
-Starten des Clients, welcher die Daten einliest und an den Broker sendet:
+Der Broker kann nach der Verwendung wieder mit `./emqtt stop` beendet werden.
+
+## Clients
+Nun starten wir als erstes den Publish-Client, welcher die Daten von der seriellen Schnittstelle einliest und an den Broker sendet. Anschliessend noch die Subscriber, für LCD, LED und ein Webserver, welcher das Interface für den Websocket bereitstellt.
 ```
 cd ~/challp-arduino/ChallP2ArduinoLab
 python publishSerialData.py 1>/dev/null&
 python subscriberLCD.py 1>/dev/null&
 python subscriberLED.py 1>/dev/null&
+python -m SimpleHTTPServer 8080 1>/dev/null&
 ```
 
-**TODO** Eigentliche ausführung des Projektes erwähnen.
+Alternativ kann auch das Skript verwendet werden, um alle Clients gemeinsam zu starten.
+```
+./start-all.sh
+```
+
+Ein `Ctrl+C` stoppt die Skripts und führt aufräumaufgaben aus.
