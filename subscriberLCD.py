@@ -1,3 +1,4 @@
+import sys, signal
 import RPi.GPIO as GPIO
 from RPLCD import CharLCD, cleared, cursor
 import paho.mqtt.client as mqtt

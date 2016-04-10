@@ -1,3 +1,4 @@
+import sys, signal
 import re
 import serial
 import paho.mqtt.client as mqtt
