@@ -6,8 +6,11 @@ THRESHOLD = 500
 HOSTNAME = "localhost"
 PORT = 1883
 
-def signal_term_handler(signal, frame):
+def cleanup():
     GPIO.cleanup(5)
+
+def signal_term_handler(signal, frame):
+    cleanup()
 
 signal.signal(signal.SIGTERM, signal_term_handler)
 
@@ -37,4 +40,4 @@ try:
     client.loop_forever()
 except KeyboardInterrupt:
     print("^C received, shutting down subscriberLCD")
-    signal_term_handler()
+    cleanup()

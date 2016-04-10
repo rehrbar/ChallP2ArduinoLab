@@ -5,6 +5,14 @@ import paho.mqtt.client as mqtt
 HOSTNAME = "localhost"
 PORT = 1883
 
+def cleanup():
+    lcd.close(clear=True)
+
+def signal_term_handler(signal, frame):
+    cleanup()
+
+signal.signal(signal.SIGTERM, signal_term_handler)
+
 # callbacks
 def on_connect(client, userdata, flags, rc):
     print("Connected to broker with result code " + str(rc))
@@ -34,4 +42,4 @@ try:
     client.loop_forever()
 except KeyboardInterrupt:
     print("^C received, shutting down subscriberLCD")
-    lcd.close(clear=True)
+    cleanup()
