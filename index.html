@@ -5,7 +5,13 @@
 <script src="paho.js"></script>
 <script>
 // Create a client instance
-client = new Paho.MQTT.Client("localhost", Number(8083), "C_socket");
+function subscribe(){
+var host=document.getElementById('broker').value;
+var port=document.getElementById('port').value;
+var topic=document.getElementById('topic').value;
+
+console.log(host + "" + port);
+client = new Paho.MQTT.Client(host, Number(port), "C_socket");
 
 // set callback handlers
 client.onConnectionLost = onConnectionLost;
@@ -14,29 +20,43 @@ client.onMessageArrived = onMessageArrived;
 // connect the client
 client.connect({onSuccess:onConnect});
 
+	// called when the client connects
+	function onConnect() {
+	  // Once a connection has been made, make a subscription and send a message.
+	  client.subscribe(topic);
+	  document.getElementById('connected').innerHTML = "You are connected to "+host+":"+port+""+topic;
+	  document.getElementById('connected').style.visibility = "visible";
+	  document.getElementById('connectionDetails').style.visibility = "hidden";
+	}
 
-// called when the client connects
-function onConnect() {
-  // Once a connection has been made, make a subscription and send a message.
-  console.log("onConnect");
-  client.subscribe("/Test");
+	// called when the client loses its connection
+	function onConnectionLost(responseObject) {
+	  if (responseObject.errorCode !== 0) {
+		console.log("onConnectionLost:"+responseObject.errorMessage);
+	  }
+	  document.getElementById('connected').style.visibility = "hidden";
+	  document.getElementById('connectionDetails').style.visibility = "visible";
+	}
+
+	// called when a message arrives
+	function onMessageArrived(message) {
+	document.getElementById('wrapper').style.visibility = "visible";
+	  document.getElementById('filler').innerHTML = message.payloadString;
+	}
 }
-
-// called when the client loses its connection
-function onConnectionLost(responseObject) {
-  if (responseObject.errorCode !== 0) {
-    console.log("onConnectionLost:"+responseObject.errorMessage);
-  }
-}
-
-// called when a message arrives
-function onMessageArrived(message) {
-  console.log("onMessageArrived:"+message.payloadString);
-  document.getElementById('filler').innerHTML = message.payloadString;
-}
-
 </script>
 </head>
 <body>
-<h1>Temperatur<div id="filler"></div></h1>
+<div id="connectionDetails">
+IP Address of the Broker: <input id="broker" type="text" /></br>
+Port: <input id="port" type="text" /></br>
+Topic to subscribe to: <input id="topic" type="text" placeholder="/topic" /></br>
+<input type="button" onclick="subscribe()" value="Subscribe">
+</div>
+<div id="connected">
+
+</div>
+<div id="wrapper" style="visibility:hidden">
+<h1>Temperature is: <div id="filler"></div></h1>
+</div>
 </body>
