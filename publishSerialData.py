@@ -1,15 +1,6 @@
-import sys, signal
 import re
 import serial
 import paho.mqtt.client as mqtt
-
-def cleanup():
-    client.loop_stop()
-
-def signal_term_handler(signal, frame):
-    cleanup()
-
-signal.signal(signal.SIGTERM, signal_term_handler)
 
 # callbacks
 def on_connect(client, userdata, flags, rc):
@@ -36,4 +27,4 @@ try:
             print("Error reading value!")
 except KeyboardInterrupt:
     print("^C received, shutting down client")
-    cleanup()
+    client.loop_stop()

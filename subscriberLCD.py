@@ -1,18 +1,9 @@
-import sys, signal
 import RPi.GPIO as GPIO
 from RPLCD import CharLCD, cleared, cursor
 import paho.mqtt.client as mqtt
 
 HOSTNAME = "localhost"
 PORT = 1883
-
-def cleanup():
-    lcd.close(clear=True)
-
-def signal_term_handler(signal, frame):
-    cleanup()
-
-signal.signal(signal.SIGTERM, signal_term_handler)
 
 # callbacks
 def on_connect(client, userdata, flags, rc):
@@ -43,4 +34,4 @@ try:
     client.loop_forever()
 except KeyboardInterrupt:
     print("^C received, shutting down subscriberLCD")
-    cleanup()
+    lcd.close(clear=True)

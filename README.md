@@ -112,4 +112,4 @@ Alternativ kann auch das Skript verwendet werden, um alle Clients gemeinsam zu s
 ./start-all.sh
 ```
 
-Ein `Ctrl+C` stoppt die Skripts und führt Aufräumaufgaben aus.
+Ein `Ctrl+C` stoppt die Skripts, ohne jedoch die Aufräumarbeiten auszuführen. Aus Zeitgründen wurde dies nicht mehr implementiert.
