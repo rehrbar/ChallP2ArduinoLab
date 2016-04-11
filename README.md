@@ -3,19 +3,19 @@ Dieses Projekt entstand aus der Aufgabenstellung zum Modul Challenge Projekt 2 F
 
 ## Aufgabenstellung
 Die Aufgabenstellung ist im PDF "Challenge Projekt Raspberry-Arduino Lab.pdf" festgehalten.
-Es geht um ein Miniprojekt in dem ein Temperatursensor ausgelesen, und der Wert an verschiedene Endpunkte geschickt werden soll.
+Es geht um ein Miniprojekt in dem ein Sensor ausgelesen, und der Wert an verschiedene Endpunkte geschickt werden soll.
 ### Sensor auslesen
-Ein Temperatursensor soll an ein Arduinoboard angeschlossen werden.
-Die Werte des Temperatursensors sollen an den Arduino geschickt werden.
+Ein Sensor soll an ein Arduinoboard angeschlossen werden.
+Die Werte des Sensors sollen an den Arduino geschickt werden.
 ### Sensordaten an Raspberry übermitteln
 Das Arduinoboard soll die eingelesenen Daten über eine serielle Schnittstelle an ein Raspberry PI übertragen.
 ### MQTT Broker
 Auf dem Raspberry sollen die Daten von der seriellen Schnittstelle an einen MQTT Broker weitergeleitet werden.
 Der Broker läuft auf auf dem Raspberry. Vom Raspberry aus sollen die Daten an drei verschiedene Aktoren übermittelt werden.
 ### Aktoren
-1. LC-Display: Das Display soll die Temperatur anzeigen
-2. LED (Schwellenwert): Wenn die Temeraturen einen gewissen Wert überschreiten / unterschreiten soll die LED Lampe ein oder ausgeschaltet werden.
-3. Websocket: Die Temperatur soll über eine Website angezeigt werden. Dazu können Websockets verwendet werden.
+1. LC-Display: Das Display soll den Wert anzeigen
+2. LED (Schwellenwert): Wenn die Werte einen gewissen Wert überschreiten / unterschreiten soll die LED Lampe ein oder ausgeschaltet werden.
+3. Websocket: Der Wert soll über eine Website angezeigt werden. Dazu können Websockets verwendet werden.
 
 ## Voraussetzungen
 Für dieses Projekt setzen wir folgende Software/Hardware voraus:
